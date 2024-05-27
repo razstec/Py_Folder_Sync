@@ -42,12 +42,8 @@ def get_file_hash(file_path):
     return hasher.hexdigest()
 
 def config_log(log_file):
-  if is_file(log_file):
-    logfile = os.path.join(log_file)
-  else:
-    logfile = os.path.join(log_file,"logs.txt")
   try:
-      logging.basicConfig(filename=logfile, level=logging.INFO,format='%(asctime)s %(message)s')
+      logging.basicConfig(filename=os.path.join(log_file,"logs.txt"), level=logging.INFO,format='%(asctime)s %(message)s')
   except PermissionError as e:
     print(f"Error: Permission denied: {log_file}")
 
